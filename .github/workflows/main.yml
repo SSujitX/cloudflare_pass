@@ -1,7 +1,7 @@
 name: CloudflareBypass
 
 on:
-  workflow_dispatch:  # run manually from GitHub UI
+  workflow_dispatch:
 
 jobs:
   run-script:
@@ -22,5 +22,10 @@ jobs:
           pip install -r requirements.txt
 
       - name: Run bypass script
-        run: |
-          xvfb-run python app.py
+        run: xvfb-run python app.py
+
+      - name: Upload HTML artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: page-output
+          path: output.html
