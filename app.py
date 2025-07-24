@@ -25,7 +25,7 @@ def main():
         sleep=5
     )
     if result["status"]:
-        with open("page.html", "w", encoding="utf-8") as f:
+        with open("output.html", "w", encoding="utf-8") as f:
             f.write(result["html"])
         with open("cookies.json", "w") as f:
             json.dump(result["cookies"], f)
