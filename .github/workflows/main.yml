@@ -1,16 +1,16 @@
-name: ScrapeDexScreener
+name: CloudflareBypass
 
 on:
-  workflow_dispatch:
+  workflow_dispatch:  # run manually from GitHub UI
 
 jobs:
-  run-scraper:
+  run-script:
     runs-on: ubuntu-latest
 
     steps:
       - uses: actions/checkout@v3
 
-      - name: Setup Python
+      - name: Set up Python
         uses: actions/setup-python@v4
         with:
           python-version: 3.11
@@ -19,8 +19,8 @@ jobs:
         run: |
           sudo apt-get update
           sudo apt-get install -y xvfb
-          pip install seleniumbase
+          pip install -r requirements.txt
 
-      - name: Run Scraper
+      - name: Run bypass script
         run: |
-          xvfb-run python your_script.py
+          xvfb-run python app.py
