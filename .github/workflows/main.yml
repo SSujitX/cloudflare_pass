@@ -29,5 +29,5 @@ jobs:
         with:
           name: page-output
           path: |
-            page.html
+            output.html
             cookies.json
