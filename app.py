@@ -1,5 +1,6 @@
 from seleniumbase import SB
-import sys, os
+import sys
+import os
 
 root_path = os.path.dirname(os.path.abspath(sys.argv[0]))
 os.chdir(root_path)
