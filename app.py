@@ -13,3 +13,9 @@ with SB(uc=True, xvfb=True) as sb:
     sb.sleep(10)
     sb.cdp.save_screenshot("after.png")
     sb.cdp.sleep(2)
+    cookies = sb.cdp.get_all_cookies()
+    with open("cf_clearance.txt", "w") as f:
+        for cookie in cookies:
+            # print(cookie["name"])
+            if cookie.name == "cf_clearance":
+                f.write(cookie.value)
