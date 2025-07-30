@@ -6,7 +6,7 @@ root_path = os.path.dirname(os.path.abspath(sys.argv[0]))
 os.chdir(root_path)
 
 with SB(uc=True, xvfb=True) as sb:
-    sb.activate_cdp_mode("https://chatgpt.com")
+    sb.activate_cdp_mode("https://mlsbd.shop/")
     sb.sleep(10)
     sb.cdp.save_screenshot("before.png")
     sb.uc_gui_click_captcha()
