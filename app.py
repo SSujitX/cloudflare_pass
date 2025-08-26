@@ -43,4 +43,5 @@ async def main():
 
 
 if __name__ == "__main__":
-    uc.loop().run_until_complete(main())
+    # uc.loop().run_until_complete(main())
+    asyncio.run(main())
