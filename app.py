@@ -5,7 +5,7 @@ import json
 
 
 async def main():
-    browser = await nodriver.start()
+    browser = await nodriver.start(no_sandbox=True)
     page = await browser.get(
         "https://www.legacy.com/api/_frontend/localmarket/united-states/california/subregion/alameda-county"
     )
