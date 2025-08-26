@@ -1,17 +1,17 @@
 import asyncio
 import nodriver as uc
+from nodriver.core.util import T
 from nodriver_cf import CFVerify
 import json
 
 
 async def main():
-    # Configure nodriver for GitHub Actions environment
-    config = uc.Config()
-    config.sandbox = False
-    config.headless = True
-    config.browser_executable_path = "/usr/bin/google-chrome-stable"
 
-    browser = await uc.start(config=config)
+    browser = await uc.start(
+        headless=False,
+        browser_executable_path="/usr/bin/google-chrome-stable",
+        sandbox=True,
+    )
     page = await browser.get(
         "https://www.legacy.com/api/_frontend/localmarket/united-states/california/subregion/alameda-county"
     )
