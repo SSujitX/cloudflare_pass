@@ -1,4 +1,4 @@
-from seleniumbase import SB
+from seleniumbase_test import SB
 import sys
 import os
 
@@ -6,10 +6,14 @@ root_path = os.path.dirname(os.path.abspath(sys.argv[0]))
 os.chdir(root_path)
 
 with SB(uc=True, xvfb=True) as sb:
-    sb.activate_cdp_mode("https://pikbest.com/")
+    sb.activate_cdp_mode(
+        "https://www.legacy.com/api/_frontend/localmarket/united-states/california/subregion/alameda-county"
+    )
     sb.sleep(10)
     sb.cdp.save_screenshot("before.png")
     sb.uc_gui_click_captcha()
+    sb.sleep(5)
+    sb.uc_gui_handle_captcha()
     sb.sleep(10)
     sb.cdp.save_screenshot("after.png")
     sb.cdp.sleep(2)
