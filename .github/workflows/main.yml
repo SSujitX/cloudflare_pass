@@ -34,9 +34,11 @@ jobs:
           pip install -r requirements.txt
 
       - name: Install Chrome
-        if: matrix.os == 'ubuntu-20.04'
         run: |
-          sudo apt install google-chrome-stable
+          sudo apt update
+          sudo apt install -y google-chrome-stable
+          which google-chrome-stable
+          google-chrome-stable --version
 
       - name: Run Cloudflare bypass script
         run: |

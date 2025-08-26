@@ -5,7 +5,14 @@ import json
 
 
 async def main():
-    browser = await nodriver.start(no_sandbox=True)
+    # Configure nodriver for GitHub Actions environment
+    config = nodriver.Config()
+    config.add_argument('--no-sandbox')
+    config.add_argument('--disable-dev-shm-usage')
+    config.add_argument('--disable-gpu')
+    config.add_argument('--headless')
+    
+    browser = await nodriver.start(config=config)
     page = await browser.get(
         "https://www.legacy.com/api/_frontend/localmarket/united-states/california/subregion/alameda-county"
     )
