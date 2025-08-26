@@ -1,47 +1,16 @@
 import asyncio
-import nodriver as uc
-from nodriver.core.util import T
-from nodriver_cf import CFVerify
-import json
+
+import zendriver as zd
 
 
 async def main():
-
-    browser = await uc.start(
-        headless=False,
-        browser_executable_path="/usr/bin/google-chrome-stable",
-        sandbox=True,
-    )
-    page = await browser.get(
-        "https://www.legacy.com/api/_frontend/localmarket/united-states/california/subregion/alameda-county"
-    )
-    await page.save_screenshot("before.png")
-    cf_verify = CFVerify(_browser_tab=page, _debug=True)
-    verified = await cf_verify.verify()
-
-    if verified:
-        print("Cloudflare bypassed successfully.")
-        await page.sleep(5)
-        await page.save_screenshot("after.png")
-        content = await page.get_content()
-        with open("content.html", "w", encoding="utf-8") as f:
-            f.write(content)
-
-        all_cookies = await browser.cookies.get_all()
-        cf_clearance = None
-        for cookie in all_cookies:
-            if cookie.name == "cf_clearance":
-                cf_clearance = cookie.value
-                break
-
-        if cf_clearance:
-            with open("cf_clearance.json", "w", encoding="utf-8") as f:
-                json.dump({"cf_clearance": cf_clearance}, f, indent=4)
-
-    else:
-        print("Failed to bypass Cloudflare.")
+    browser = await zd.start()
+    page = await browser.get("https://www.browserscan.net/bot-detection")
+    await page.sleep(5)
+    await page.save_screenshot("after.png")
+    await page.sleep(5)
+    await browser.stop()
 
 
 if __name__ == "__main__":
-    # uc.loop().run_until_complete(main())
     asyncio.run(main())
