@@ -1,16 +1,21 @@
-import asyncio
+from seleniumbase import SB
+import sys
+import os
 
-import zendriver as zd
+root_path = os.path.dirname(os.path.abspath(sys.argv[0]))
+os.chdir(root_path)
 
-
-async def main():
-    browser = await zd.start()
-    page = await browser.get("https://www.browserscan.net/bot-detection")
-    await page.sleep(5)
-    await page.save_screenshot("after.png")
-    await page.sleep(5)
-    await browser.stop()
-
-
-if __name__ == "__main__":
-    asyncio.run(main())
+with SB(uc=True, xvfb=True) as sb:
+    sb.activate_cdp_mode("https://pikbest.com/")
+    sb.sleep(10)
+    sb.cdp.save_screenshot("before.png")
+    sb.uc_gui_click_captcha()
+    sb.sleep(10)
+    sb.cdp.save_screenshot("after.png")
+    sb.cdp.sleep(2)
+    cookies = sb.cdp.get_all_cookies()
+    with open("cf_clearance.txt", "w") as f:
+        for cookie in cookies:
+            # print(cookie["name"])
+            if cookie.name == "cf_clearance":
+                f.write(cookie.value)

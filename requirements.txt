@@ -1,2 +1,4 @@
 nodriver
 zendriver
+seleniumbase
+pyautogui
