@@ -5,6 +5,5 @@ description = "Add your description here"
 readme = "README.md"
 requires-python = ">=3.13"
 dependencies = [
-    "pyautogui>=0.9.54",
-    "seleniumbase>=4.40.6",
+    "nodriver>=0.47.0",
 ]

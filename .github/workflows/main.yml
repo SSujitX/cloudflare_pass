@@ -2,7 +2,7 @@ name: CI build 6 - (Ubuntu) CloudflareBypass
 
 on:
   schedule:
-    - cron: "17 * * * *"
+    - cron: "0 */2 * * *" # Run every 2 hours
   push:
     branches: [master]
   pull_request:
@@ -69,4 +69,5 @@ jobs:
           path: |
             before.png
             after.png
-            cf_clearance.txt
+            cf_clearance.json
+            content.html
