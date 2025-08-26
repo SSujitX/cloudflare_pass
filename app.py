@@ -7,12 +7,12 @@ import json
 async def main():
     # Configure nodriver for GitHub Actions environment
     config = nodriver.Config()
-    config.add_argument('--no-sandbox')
-    config.add_argument('--disable-dev-shm-usage')
-    config.add_argument('--disable-gpu')
-    config.add_argument('--headless')
-    
-    browser = await nodriver.start(config=config)
+    config.sandbox = False
+    config.headless = True
+
+    browser = await nodriver.start(
+        config=config, browser_executable_path="/usr/bin/google-chrome-stable"
+    )
     page = await browser.get(
         "https://www.legacy.com/api/_frontend/localmarket/united-states/california/subregion/alameda-county"
     )
