@@ -20,6 +20,6 @@ with SB(uc=True, xvfb=True) as sb:
     page_source = sb.cdp.get_page_source()
     with open("content.html", "w", encoding="utf-8") as f:
         f.write(page_source)
-    cookies = sb.cdp.get_all_cookies()
-    with open("cf_clearance.json", "w", encoding="utf-8") as f:
-        json.dump(cookies, f, indent=4)
+    # cookies = sb.cdp.get_all_cookies()
+    # with open("cf_clearance.json", "w", encoding="utf-8") as f:
+    #     json.dump(cookies, f, indent=4)
