@@ -38,10 +38,6 @@ jobs:
         run: |
           sudo apt install google-chrome-stable
 
-      - name: Install chromedriver
-        run: |
-          seleniumbase install chromedriver
-
       - name: Run Cloudflare bypass script
         run: |
           python app.py
