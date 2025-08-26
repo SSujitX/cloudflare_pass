@@ -9,10 +9,9 @@ async def main():
     config = nodriver.Config()
     config.sandbox = False
     config.headless = True
+    config.browser_executable_path = "/usr/bin/google-chrome-stable"
 
-    browser = await nodriver.start(
-        config=config, browser_executable_path="/usr/bin/google-chrome-stable"
-    )
+    browser = await nodriver.start(config=config)
     page = await browser.get(
         "https://www.legacy.com/api/_frontend/localmarket/united-states/california/subregion/alameda-county"
     )
